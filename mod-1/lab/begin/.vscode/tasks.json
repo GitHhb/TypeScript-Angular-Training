@@ -1,0 +1,33 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+
+    "version": "0.1.0",
+    "tasks": [
+        {
+            "taskName": "echo",
+            "version": "0.1.0",
+            "command": "echo",
+            "isShellCommand": true,
+            "args": [
+                "Hello World"
+            ],
+            "showOutput": "always"
+        }
+        {
+            "taskName": "tsc",
+            // "command": "node_modules/.bin/tsc",
+            "command": "node_modules\\.bin\\tsc",
+            "args": ["-w"],
+            "isShellCommand": true,
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch"
+        },
+        {
+            "taskName": "build",
+            "command": "gulp",
+            "args": ["build"],
+            "isShellCommand": true
+        }
+    ]
+}
