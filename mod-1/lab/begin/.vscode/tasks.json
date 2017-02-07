@@ -18,7 +18,7 @@
             "taskName": "tsc",
             // "command": "node_modules/.bin/tsc",
             "command": "node_modules\\.bin\\tsc",
-            "args": ["-w"],
+        "args": ["-w", "index.ts"],
             "isShellCommand": true,
             "isBackground": true,
             "problemMatcher": "$tsc-watch"

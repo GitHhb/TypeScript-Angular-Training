@@ -6,27 +6,43 @@
         private stackElement: HTMLUListElement;
         private stack: number[] = [];
 
-        constructor(root: Document){
+        constructor(private root: Document){
             this.numberInput = <HTMLInputElement> root.getElementById("number");
             this.stackElement = <HTMLUListElement> root.getElementById("stack");
 
+            this.addEventListeners();
             this.numberInput.focus();
-            this.addEventListeners(root);
 
         }
 
-        addEventListeners = function(root: Document) {
-            root.getElementById("btnEnter").addEventListener("click",
-                this.pushAndClearInput.bind(this) );
+        addEventListeners = function() {
+            this.root.getElementById("btnEnter").addEventListener("click",
+                () => this.pushAndClearInput() );
 
         }
 
         pushAndClearInput = function() {
-            this.stack.push(this.numberInput.value);
+            let nr: number = +this.numberInput.value;
+            if (! isNaN(nr)) {
+                this.stack.push(nr);
+                this.displayStack();
+            }
             this.numberInput.value = "";
-            let x = document.createElement("li");
-            x.appendChild(document.createTextNode(this.stack[0]));
-            this.stackElement.appendChild(x);
+            this.numberInput.focus();
+        }
+
+        displayStack = function() {
+            // remove old stack
+            while (this.stackElement.hasChildNodes()) {
+                this.stackElement.removeChild(this.stackElement.firstChild);
+            }
+
+            // show current stack
+            for (let i of this.stack) {
+                let el = this.root.createElement("li");
+                el.appendChild(this.root.createTextNode(i.toString()));
+                this.stackElement.appendChild(el);
+            }
         }
     }
 
