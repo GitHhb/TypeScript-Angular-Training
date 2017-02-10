@@ -15,13 +15,21 @@
 
         }
 
-        addEventListeners = function() {
+        addEventListeners () {
             this.root.getElementById("btnEnter").addEventListener("click",
                 () => this.pushAndClearInput() );
+            this.root.getElementById("btnAdd").addEventListener("click",
+                function(){ this.calculate((x, y) => x + y).bind(this) });
+            this.root.getElementById("btnSubtract").addEventListener("click",
+                () => this.calculate((x, y) => x - y) );
+            this.root.getElementById("btnMultiply").addEventListener("click",
+                () => this.calculate((x, y) => x * y) );
+            this.root.getElementById("btnDivide").addEventListener("click",
+                () => this.calculate((x, y) => x / y) );
 
         }
 
-        pushAndClearInput = function() {
+        pushAndClearInput () {
             let nr: number = +this.numberInput.value;
             if (! isNaN(nr)) {
                 this.stack.push(nr);
@@ -31,7 +39,7 @@
             this.numberInput.focus();
         }
 
-        displayStack = function() {
+        displayStack () {
             // remove old stack
             while (this.stackElement.hasChildNodes()) {
                 this.stackElement.removeChild(this.stackElement.firstChild);
@@ -40,9 +48,29 @@
             // show current stack
             for (let i of this.stack) {
                 let el = this.root.createElement("li");
-                el.appendChild(this.root.createTextNode(i.toString()));
+                el.textContent = i.toString();
                 this.stackElement.appendChild(el);
             }
+        }
+
+        nextValues () {
+            // pop values
+            const val1 = this.stack.pop() || 0;
+            const val2 = this.stack.pop() || 0;
+
+            // return values
+            return {x: val1, y: val2};
+        }
+
+        calculate (fn: Function) {
+            if (this.numberInput.value != "")
+                this.pushAndClearInput();
+            const {x, y} = this.nextValues();
+            // const result = eval(x + calculation + y);
+            this.stack.push(fn(x, y));
+
+            this.displayStack();
+
         }
     }
 
