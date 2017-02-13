@@ -6,22 +6,27 @@
     "tasks": [
         {
             "taskName": "echo",
-            "version": "0.1.0",
             "command": "echo",
             "isShellCommand": true,
             "args": [
                 "Hello World"
             ],
             "showOutput": "always"
-        }
+        },
         {
             "taskName": "tsc",
-            // "command": "node_modules/.bin/tsc",
             "command": "node_modules\\.bin\\tsc",
-        "args": ["-w", "index.ts"],
+            "args": ["-w", "index.ts"],
             "isShellCommand": true,
             "isBackground": true,
             "problemMatcher": "$tsc-watch"
+        },
+        {
+            "taskName": "start",
+            "command": "npm",
+            "args": ["start"],
+            "isShellCommand": true,
+            "isBackground": true
         },
         {
             "taskName": "build",

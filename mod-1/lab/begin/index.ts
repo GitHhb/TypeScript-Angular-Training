@@ -19,14 +19,34 @@
             this.root.getElementById("btnEnter").addEventListener("click",
                 () => this.pushAndClearInput() );
             this.root.getElementById("btnAdd").addEventListener("click",
-                function(){ this.calculate((x, y) => x + y).bind(this) });
+                (function (e) { console.log(e);return this.calculate((x, y) => x + y)}).bind(this) ) ;
             this.root.getElementById("btnSubtract").addEventListener("click",
                 () => this.calculate((x, y) => x - y) );
             this.root.getElementById("btnMultiply").addEventListener("click",
                 () => this.calculate((x, y) => x * y) );
             this.root.getElementById("btnDivide").addEventListener("click",
                 () => this.calculate((x, y) => x / y) );
+            this.numberInput.addEventListener("keypress", (e) => this.handleKeypress(e));
+                
 
+        }
+
+        handleKeypress(e) {
+            const charStr = String.fromCharCode(e.keyCode);
+            console.log(e.keyCode, e.which, e.code, e.key, charStr);
+            switch (e.keyCode) {
+                case 13:
+                    // this.root.dispatchEvent(this.pushAndClearInput);
+                    break;
+                case 42: // *
+                    const event = new MouseEvent('click', {})
+                    this.root.dispatchEvent(event);
+                    break;
+                case 43: // +
+                case 45: // -
+                case 47: // /
+                    // this.root.dispatchEvent();
+            }
         }
 
         pushAndClearInput () {
@@ -62,7 +82,7 @@
             return {x: val1, y: val2};
         }
 
-        calculate (fn: Function) {
+        calculate (fn: Function): void {
             if (this.numberInput.value != "")
                 this.pushAndClearInput();
             const {x, y} = this.nextValues();
