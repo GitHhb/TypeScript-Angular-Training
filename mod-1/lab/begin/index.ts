@@ -30,16 +30,16 @@
         }
 
         handleKeypress(e: KeyboardEvent) {
-            const keys = { 
+            const keyMap = { 
                 13: "btnEnter",
                 42: "btnMultiply",
                 43: "btnAdd",
                 45: "btnSubtract",
                 47: "btnDivide"
             }
-            if (e.keyCode in keys) {
+            if (e.keyCode in keyMap) {
                 const event: MouseEvent = new MouseEvent('click');
-                this.root.getElementById(keys[e.keyCode]).dispatchEvent(event);
+                this.root.getElementById(keyMap[e.keyCode]).dispatchEvent(event);
                 e.preventDefault();
             }
         }
