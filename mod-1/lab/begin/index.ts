@@ -27,25 +27,20 @@
             this.root.getElementById("btnDivide").addEventListener("click",
                 () => this.calculate((x, y) => x / y) );
             this.numberInput.addEventListener("keypress", (e) => this.handleKeypress(e));
-                
-
         }
 
-        handleKeypress(e) {
-            const charStr = String.fromCharCode(e.keyCode);
-            console.log(e.keyCode, e.which, e.code, e.key, charStr);
-            switch (e.keyCode) {
-                case 13:
-                    // this.root.dispatchEvent(this.pushAndClearInput);
-                    break;
-                case 42: // *
-                    const event = new MouseEvent('click', {})
-                    this.root.dispatchEvent(event);
-                    break;
-                case 43: // +
-                case 45: // -
-                case 47: // /
-                    // this.root.dispatchEvent();
+        handleKeypress(e: KeyboardEvent) {
+            const keys = { 
+                13: "btnEnter",
+                42: "btnMultiply",
+                43: "btnAdd",
+                45: "btnSubtract",
+                47: "btnDivide"
+            }
+            if (e.keyCode in keys) {
+                const event: MouseEvent = new MouseEvent('click');
+                this.root.getElementById(keys[e.keyCode]).dispatchEvent(event);
+                e.preventDefault();
             }
         }
 

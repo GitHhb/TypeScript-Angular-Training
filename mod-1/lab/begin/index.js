@@ -19,19 +19,17 @@
             this.numberInput.addEventListener("keypress", function (e) { return _this.handleKeypress(e); });
         };
         RPNCalculator.prototype.handleKeypress = function (e) {
-            var charStr = String.fromCharCode(e.keyCode);
-            console.log(e.keyCode, e.which, e.code, e.key, charStr);
-            switch (e.keyCode) {
-                case 13:
-                    // this.root.dispatchEvent(this.pushAndClearInput);
-                    break;
-                case 42:
-                    var event_1 = new MouseEvent('click', {});
-                    this.root.dispatchEvent(event_1);
-                    break;
-                case 43: // +
-                case 45: // -
-                case 47: // /
+            var keys = {
+                13: "btnEnter",
+                42: "btnMultiply",
+                43: "btnAdd",
+                45: "btnSubtract",
+                47: "btnDivide"
+            };
+            if (e.keyCode in keys) {
+                var event_1 = new MouseEvent('click');
+                this.root.getElementById(keys[e.keyCode]).dispatchEvent(event_1);
+                e.preventDefault();
             }
         };
         RPNCalculator.prototype.pushAndClearInput = function () {
