@@ -1,4 +1,5 @@
 var path = require("path");
+var webpack = require('webpack');
 
 module.exports = {
     entry: './src/index.ts',
@@ -8,5 +9,16 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.js']
-    }
+    },
+    module: {
+        rules: [{
+            test: /.ts$/,
+            use:  'ts-loader'
+        }]
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery'
+        })
+    ]
 };
