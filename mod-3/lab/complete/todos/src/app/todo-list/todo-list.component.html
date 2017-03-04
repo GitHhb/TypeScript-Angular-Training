@@ -1,0 +1,15 @@
+<div>
+  <input type="text" [(ngModel)]="newTodo" />
+  <button (click)="addTodo()" [disabled]="!newTodo">
+    Add
+  </button>
+</div>
+<ol>
+  <li *ngFor="let todo of todos">
+    <app-todo-item [item]="todo"></app-todo-item>
+  </li>
+</ol>
+
+<div *ngIf="!allDone">
+    <button (click)="clearDone()">Clear done</button>
+</div>
