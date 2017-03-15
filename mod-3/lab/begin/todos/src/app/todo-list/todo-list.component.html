@@ -1,5 +1,13 @@
+<div>
+  <input type="text" [(ngModel)]="newTodo"/>
+  <button (click)="addTodo()" [disabled]="!newTodo">Item toevoegen</button>
+</div>
+<div *ngIf="noDoneElementsLeft">
+  <button (click)="clearDone()">Verwijder voltooid</button>
+</div>
+
 <ol>
   <li *ngFor="let todo of todos">
-    {{todo.title}}
+    <app-todo-item [item]="todo"></app-todo-item>
   </li>
 </ol>
