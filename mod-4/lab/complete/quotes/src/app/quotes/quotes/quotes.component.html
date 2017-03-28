@@ -1,0 +1,9 @@
+<div>
+  Number of quotes: 
+  <input type="number" [(ngModel)]="quoteCount" min=0 [max]="quotes.length">
+</div>
+<ul>
+  <li *ngFor="let quote of quotes | randomize:quoteCount">
+    {{quote}}
+  </li>
+</ul>
