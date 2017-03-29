@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>
+    {{title}}
+  </h1>
+
+  <div *ngIf="!selectedMovie">
+    <app-movie-list (movieSelected)="movieSelected($event)">
+    </app-movie-list>
+  </div>
+  <div *ngIf="selectedMovie">
+    <app-movie-editor [movie]="selectedMovie" (movieSaved)="movieSaved()" (cancelEdit)="cancelEdit()">
+    </app-movie-editor>
+  </div>
+</div>
+
