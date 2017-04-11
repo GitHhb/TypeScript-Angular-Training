@@ -3,5 +3,6 @@
 </h2>
 
 <app-movie-list-item *ngFor="let m of movies"
-    [movie]="m">
+    [movie]="m"
+    (movieSelected)="onMovieSelected($event)">
 </app-movie-list-item>
