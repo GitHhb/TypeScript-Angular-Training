@@ -1,0 +1,16 @@
+<div class="container">
+  <div *ngIf="!selectedMovie">
+    <h1>
+      Movies
+    </h1>
+    <app-movie-list-item (movieSelected)="movieSelected($event)">
+    </app-movie-list-item>
+  </div>
+  <div *ngIf="selectedMovie">
+    <h1>
+      Movie editor
+    </h1>
+    <app-movie-editor [movieId]="selectedMovie" (showList)="showList()">
+    </app-movie-editor>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="row well">
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input 
+        type="text" 
+        [(ngModel)]="movie.title" 
+        class="form-control" 
+        id="title" 
+        name="title" 
+        placeholder="Title">
+    </div>
+    <div class="form-group">
+      <label for="overview">Overview</label>
+      <textarea 
+        [(ngModel)]="movie.overview" 
+        class="form-control"
+        rows="10" 
+        id="overview" 
+        name="overview" 
+        placeholder="Overview">
+      </textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">
+      Save
+    </button>
+    <button class="btn btn-danger" (click)="onCancel($event)">
+      Cancel
+    </button>
+  </form>
+</div>
